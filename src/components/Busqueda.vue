@@ -2,11 +2,9 @@
     <div class="text-center">
         <search-id></search-id>
 
-        <p>Cantidad de productos con stock: {{availableProducts.length}}</p>
-        <p>Stock total de video juegos: {{totalStock}}</p>
+        <h4>Cantidad de productos con stock: {{availableProducts.length}}</h4>
+        <h4>Stock total de video juegos: {{totalStock}}</h4>
         <hr>
-
-        {{ this.$store.getters.totalStock }}
 
         <table class="table">
             <thead>

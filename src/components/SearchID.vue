@@ -1,7 +1,7 @@
 <template lang="">
     <div>
         <form>
-            <label class="display-6">Busca tu juego por código:</label>
+            <h1>Busca tu juego por código:</h1>
             <br>
             <input type="text" placeholder="Ej: 0001" v-model="gameID">
             <table class="table" v-for="(searchProduct, i) in searchProductsByID" :key="i">

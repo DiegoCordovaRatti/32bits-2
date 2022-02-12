@@ -13,6 +13,8 @@ const store = new Vuex.Store({
       {codigo: "0005", nombre: "Bloodborne", stock: "100", precio: "10000", color: "blue", destacado: "false"},
       {codigo: "0006", nombre: "Forza Horizon 4", stock: "100", precio: "20000", color: "red", destacado: "true"},
     ],
+    totalSales: 0,
+    soldGames:[]
   },
   getters: {
     availableItems: state =>{
@@ -34,8 +36,40 @@ const store = new Vuex.Store({
       return totalStock
     }
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    sellProduct: (state, productSold) =>{
+      state.games.forEach((game)=>{
+        if (game.codigo == productSold.codigo && game.stock > 0) {
+          game.stock--
+          state.totalSales += parseInt(game.precio)
+          setTimeout(()=>{
+            alert ('Venta procesada')
+          },100)
+        }
+      })
+    },
+    soldGamesList: (state, soldGame)=>{
+      const soldGameObj = {codigo: soldGame.codigo, nombre: soldGame.nombre, precio: soldGame.precio}
+      state.soldGames.push(soldGameObj)
+    }
+
+  },
+  actions: {
+    sellProduct({commit}, productSold){
+      return new Promise(()=>{
+        setTimeout(() =>{
+          commit('sellProduct', productSold)
+        }, 2000)
+      })
+    },
+    soldGamesList({commit}, soldGame){
+      return new Promise(() =>{
+        setTimeout(() =>{
+          commit('soldGamesList', soldGame)
+        }, 1000)
+      })
+    }
+  }
 });
 
 export default store;
